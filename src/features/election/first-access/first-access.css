@@ -1,0 +1,246 @@
+.boot-shell .cockpit-candidate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 0;
+}
+.boot-shell .cockpit-candidate .boot-portrait {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+}
+.boot-shell .cockpit-candidate > b {
+  color: var(--text-muted);
+}
+.boot-neutral-map {
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+.boot-neutral-map path {
+  fill: var(--bg-control);
+  stroke: var(--border-active);
+  stroke-width: 1;
+}
+.boot-chart {
+  height: 112px;
+  padding-top: 18px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+.boot-region-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  min-height: 84px;
+  padding: 8px 0;
+  gap: 10px;
+  font-size: 13px;
+}
+.boot-region-row small {
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+.boot-region-row > b {
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--text-muted);
+}
+.boot-region-row > i {
+  grid-column: 1/-1;
+  height: 2px;
+  background: var(--bg-control);
+}
+.boot-timeline-line {
+  flex: 1;
+  height: 2px;
+  background: var(--bg-hover);
+}
+.boot-shell .cockpit-status {
+  min-width: 0;
+}
+.boot-shell .cockpit-status span {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+}
+.first-access-controller {
+  display: contents;
+}
+.entry-count-target {
+  position: relative;
+  color: transparent !important;
+}
+.entry-count-target > small {
+  color: transparent !important;
+}
+.entry-count-text {
+  position: absolute;
+  inset: 0 auto auto 0;
+  white-space: nowrap;
+  pointer-events: none;
+  color: var(--text-primary) !important;
+  font: inherit !important;
+  letter-spacing: inherit;
+  line-height: inherit;
+}
+.entry-count-text::before {
+  content: attr(data-count-value);
+}
+.entry-count-suffix::before {
+  content: attr(data-count-suffix);
+}
+.entry-count-text[data-count-kind='muted'] {
+  color: var(--text-muted) !important;
+}
+.entry-count-text[data-count-kind='secondary'] {
+  color: var(--text-secondary) !important;
+}
+.entry-count-text > small {
+  color: var(--text-secondary) !important;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .first-access-controller[data-entry-counting='preparing']
+    :is(
+      .race-progress > strong,
+      .cockpit-top-two .cockpit-candidate > b,
+      .compact-candidate-row > strong
+    ) {
+    position: relative;
+    color: transparent !important;
+  }
+  .first-access-controller[data-entry-counting='preparing']
+    :is(.race-progress > strong, .cockpit-top-two .cockpit-candidate > b)
+    > small {
+    color: transparent !important;
+  }
+  .first-access-controller[data-entry-counting='preparing']
+    :is(
+      .race-progress > strong,
+      .cockpit-top-two .cockpit-candidate > b,
+      .compact-candidate-row > strong
+    )::after {
+    content: '0,00%';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--text-primary);
+    pointer-events: none;
+  }
+  .first-access-controller[data-entry-counting='preparing']
+    .cockpit-top-two
+    .cockpit-candidate
+    > span:not(.portrait-fallback) {
+    position: relative;
+    color: transparent !important;
+  }
+  .first-access-controller[data-entry-counting='preparing']
+    .cockpit-top-two
+    .cockpit-candidate
+    > span:not(.portrait-fallback)::after {
+    content: '0';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--text-muted);
+    pointer-events: none;
+  }
+}
+.first-access-controller .region-sidebar:has(> details) .boot-region-reserve {
+  display: none;
+}
+.first-access-controller .region-sidebar:not(:has(> details)) {
+  display: flex;
+  flex-direction: column;
+}
+.first-access-controller
+  .region-sidebar:not(:has(> details)):not(:has(> .boot-region-reserve))::after {
+  content: '';
+  height: 420px;
+  display: block;
+  order: 1;
+  flex-shrink: 0;
+}
+.first-access-controller .boot-region-reserve {
+  order: 1;
+}
+.first-access-controller .map-legend:has(> details):not(:has(> button)) {
+  min-width: 201px;
+  justify-content: flex-end;
+}
+@media (min-width: 1280px) {
+  .first-access-controller .compact-chart:not(:has(svg)) {
+    min-height: 174px;
+  }
+  .boot-shell .compact-chart {
+    min-height: 174px;
+  }
+}
+@media (min-width: 1280px) and (max-height: 800px) {
+  .first-access-controller .compact-chart:not(:has(svg)),
+  .boot-shell .compact-chart {
+    min-height: 157px;
+  }
+}
+.first-access-controller .region-sidebar:not(:has(> details)) .exterior-row {
+  order: 2;
+}
+.first-access-controller .boot-map-cover {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 220ms ease;
+  opacity: 1;
+}
+.first-access-controller .boot-map-cover[data-painted='true'] {
+  opacity: 0;
+}
+.first-access-enter .race-progress,
+.first-access-enter .cockpit-top-two {
+  animation: boot-reveal 420ms ease both;
+}
+.first-access-enter .cockpit-top-two {
+  animation-delay: 60ms;
+}
+.first-access-enter .other-candidates {
+  animation: boot-reveal 420ms 240ms ease both;
+}
+.first-access-enter .compact-chart,
+.first-access-enter .update-feed {
+  animation: boot-reveal 420ms 360ms ease both;
+}
+@keyframes boot-reveal {
+  from {
+    opacity: 0.25;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-height: 800px) and (min-width: 769px) {
+  .boot-chart {
+    height: 95px;
+  }
+}
+@media (max-width: 768px) {
+  .boot-shell .cockpit-candidate > strong {
+    min-height: 28px;
+  }
+  .boot-region-row {
+    min-height: 74px;
+  }
+  .boot-shell .cockpit-majority {
+    min-height: 29px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .first-access-controller * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

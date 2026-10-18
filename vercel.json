@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "regions": ["gru1"],
+  "env": { "TSE_CACHE_DIR": "/tmp/tse-cache" },
+  "functions": { "src/app/**/route.ts": { "maxDuration": 60 }, "src/app/page.tsx": { "maxDuration": 60 } }
+}
